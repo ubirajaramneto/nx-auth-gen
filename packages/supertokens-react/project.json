@@ -54,6 +54,51 @@
         "jestConfig": "packages/supertokens-react/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "version-patch": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "releaseAs": "patch"
+      }
+    },
+    "version-minor": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "releaseAs": "minor"
+      }
+    },
+    "version-major": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "releaseAs": "major"
+      }
+    },
+    "version-patch-dr": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "releaseAs": "patch",
+        "dryRun": true
+      }
+    },
+    "version-minor-dr": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "releaseAs": "minor",
+        "dryRun": true
+      }
+    },
+    "version-major-dr": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "releaseAs": "major",
+        "dryRun": true
+      }
     }
   },
   "tags": []
