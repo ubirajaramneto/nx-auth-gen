@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "supertokens-react",
+  "version": "0.0.1",
+  "generators": {
+    "supertokens-react": {
+      "factory": "./src/generators/supertokens-react/generator",
+      "schema": "./src/generators/supertokens-react/schema.json",
+      "description": "supertokens-react generator"
+    }
+  }
+}

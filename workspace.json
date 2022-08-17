@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "supertokens-react": "packages/supertokens-react",
+    "supertokens-react-e2e": "e2e/supertokens-react-e2e"
+  }
+}
