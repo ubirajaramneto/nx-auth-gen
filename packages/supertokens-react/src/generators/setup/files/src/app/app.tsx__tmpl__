@@ -1,0 +1,39 @@
+import React from 'react';
+
+import SuperTokens, { SuperTokensWrapper } from "supertokens-auth-react";
+import ThirdParty, {Github, Google, Facebook, Apple} from "supertokens-auth-react/recipe/thirdparty";
+import Session from "supertokens-auth-react/recipe/session";
+
+SuperTokens.init({
+    appInfo: {
+        appName: "<%= STAppName %>",
+        apiDomain: "<%= STApiDomain %>",
+        websiteDomain: "<%= STWebDomain %>",
+        apiBasePath: "/<%= STApiBasePath %>",
+        websiteBasePath: "/<%= STWebBasePath %>"
+    },
+    recipeList: [
+        ThirdParty.init({
+            signInAndUpFeature: {
+                providers: [
+                    Github.init(),
+                    Google.init(),
+                    Facebook.init(),
+                    Apple.init(),
+                ]
+            }
+        }),
+        Session.init()
+    ]
+});
+
+
+class App extends React.Component {
+    render() {
+        return (
+            <SuperTokensWrapper>
+                {/*Your app components*/}
+            </SuperTokensWrapper>
+        );
+    }
+}

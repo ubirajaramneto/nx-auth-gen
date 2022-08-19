@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "SupertokensReact",
+  "$id": "Setup",
   "title": "",
   "type": "object",
   "properties": {
@@ -12,7 +12,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What is the name of the app that you want to setup?"
     },
     "tags": {
       "type": "string",
@@ -23,6 +23,21 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "STAppName": {
+      "type": "string"
+    },
+    "STApiDomain": {
+      "type": "string"
+    },
+    "STWebDomain": {
+      "type": "string"
+    },
+    "STApiBasePath": {
+      "type": "string"
+    },
+    "STWebBasePath": {
+      "type": "string"
     }
   },
   "required": ["name"]

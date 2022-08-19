@@ -1,7 +1,6 @@
 import {
-  checkFilesExist,
   ensureNxProject,
-  readJson,
+  runNxCommand,
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
@@ -18,47 +17,21 @@ describe('supertokens-react e2e', () => {
       '@nx-auth-gen/supertokens-react',
       'dist/packages/supertokens-react'
     );
+    runNxCommand(
+      'generate @nrwl/react:application --name=react-app --style=css --routing=false'
+    );
   });
 
   afterAll(() => {
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
-    runNxCommandAsync('reset');
+    // runNxCommandAsync('reset');
   });
 
   it('should create supertokens-react', async () => {
-    const project = uniq('supertokens-react');
+    const project = 'react-app';
     await runNxCommandAsync(
-      `generate @nx-auth-gen/supertokens-react:supertokens-react ${project}`
+      `generate @nx-auth-gen/supertokens-react:setup ${project} directory=apps STAppName=reactTest STApiDomain=localhost:3000 STWebDomain=localhost:4200 STApiBasePath=auth STWebBasePath=auth`
     );
-    const result = await runNxCommandAsync(`build ${project}`);
-    expect(result.stdout).toContain('Executor ran');
   }, 120000);
-
-  describe('--directory', () => {
-    it('should create src in the specified directory', async () => {
-      const project = uniq('supertokens-react');
-      await runNxCommandAsync(
-        `generate @nx-auth-gen/supertokens-react:supertokens-react ${project} --directory subdir`
-      );
-      expect(() =>
-        checkFilesExist(`libs/subdir/${project}/src/index.ts`)
-      ).not.toThrow();
-    }, 120000);
-  });
-
-  describe('--tags', () => {
-    it('should add tags to the project', async () => {
-      const projectName = uniq('supertokens-react');
-      ensureNxProject(
-        '@nx-auth-gen/supertokens-react',
-        'dist/packages/supertokens-react'
-      );
-      await runNxCommandAsync(
-        `generate @nx-auth-gen/supertokens-react:supertokens-react ${projectName} --tags e2etag,e2ePackage`
-      );
-      const project = readJson(`libs/${projectName}/project.json`);
-      expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
-    }, 120000);
-  });
 });
